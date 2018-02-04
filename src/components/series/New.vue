@@ -7,10 +7,13 @@
     {{serie.name}}
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Name of episode" @keydown.enter="appendEpisode">
-		  <label for="">Episodes:</label>
-		<ul>
-			<li v-for="(episode, index) in serie.episodes" :key="index">{{episode}}</li>
+    <input type="text" class="form-control" placeholder="Name of season" @keydown.enter.prevent="appendSeason" v-model="seasonName">
+		<div class="form-group">
+			<button @click.prevent="appendSeason" class="btn btn-success"><i class="fas fa-plus"></i></button>
+		</div>
+		  <label for="">Seasons ({{serie.seasons.length}}):</label>
+		<ul class="list-group">
+			<li @click="removeSeason" class="list-group-item seasonItem" v-for="(season, index) in serie.seasons" :key="index">{{season}}</li>
 		</ul>
   </div>
  <div class="form-group">
@@ -25,21 +28,36 @@
 	export default {
 		data() {
 			return {
+				seasonName: "",
 				serie: {
 					name: "",
-					episodes: [],
+					seasons: [],
 					coverImg: ""
 				}
 			}
 		},
 		methods: {
-			appendEpisode(e){
-				this.serie.episodes.push(e.target.value)
-				e.target.value = ""
+			appendSeason(){
+				this.serie.seasons.push(this.seasonName)
+				this.seasonName=""
 			},
 			addNew() {
 				this.$http.post("series", this.serie);
+			},
+			removeSeason() {
+				var value = event.target.innerHTML;
+				var index = this.serie.seasons.indexOf(value);
+				if (index > -1) {
+    		this.serie.seasons.splice(index, 1);
+}
 			}
 		}
 	}
 </script>
+
+<style scoped>
+	.seasonItem:hover{
+		background: rgb(240, 177, 177);
+		cursor: pointer;
+	}
+</style>

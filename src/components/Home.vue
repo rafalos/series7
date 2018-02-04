@@ -1,6 +1,7 @@
 <template>
   <div class="jumbotron">
-      <h2>Find best series and track your progress</h2>
+      <h1>Series7</h1>
+      <h3><i>Find best series and track your progress</i></h3>
   </div>
 </template>
 

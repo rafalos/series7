@@ -9,6 +9,8 @@
     <ul class="navbar-nav mr-auto" >
          <router-link to="/series" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Series List</a></router-link>
          <router-link to="/new" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Add new</a></router-link>
+         <router-link to="/login" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Login</a></router-link>
+         <router-link to="/register" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Register</a></router-link>
     </ul>
   </div>
 </nav>
@@ -19,6 +21,8 @@
 
 <style>
 
-
+.active {
+  border: 1px solid black;
+}
 </style>
 

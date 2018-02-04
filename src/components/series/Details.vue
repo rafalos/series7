@@ -12,44 +12,21 @@
                </ul>
            </div>
         </div>
-  <div class="row" style="margin: 20px;">
-      <div class="col-lg-6">
-          <h2 class="text-center">Seasons</h2>
-          <ul list-group>
-              <li class="list-group-item seasonItem" @click="displayEpisodes" v-for="( index, season) in seasons" :key="index">{{season}}</li>
-          </ul>
-      </div>
-       <div class="col-lg-6" v-if="episodesOpen">
-           <h2 class="text-center">Episodes of {{clickedSeason}} <button class="btn btn-success"><i class="fas fa-plus"></i></button></h2>
-            <ul list-group>
-              <li class="list-group-item">test</li>
-          </ul>
-      </div>
-      <div class="col-lg-6" v-else>
-          <h2 class="text-center">Select season</h2>
-      </div>
-  </div>
- 
+      <app-watch-details :seasons="seasons"></app-watch-details>
 </div>
 </template>
 
 
 <script>
+import WatchDetails from "./WatchDetails"
  export default {
      data() {
          return {
              addEpisodeOpen: false,
-             episodesOpen: false, 
              name: "",
              coverImg:"",
              seasons:[],
              clickedSeason: ""
-         }
-     },
-     methods: {
-         displayEpisodes(event) {
-             this.episodesOpen = true;
-             this.clickedSeason = event.target.innerHTML;
          }
      },
      created() {
@@ -60,7 +37,10 @@
         this.coverImg = data.serie.coverImg
         this.seasons = data.serie.seasons
         }
-    )}
+    )},
+    components: {
+        appWatchDetails: WatchDetails
+    }
  } 
   
 </script>

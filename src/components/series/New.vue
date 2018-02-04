@@ -13,7 +13,7 @@
 		</div>
 		  <label for="">Seasons ({{serie.seasons.length}}):</label>
 		<ul class="list-group">
-			<li @click="removeSeason" class="list-group-item seasonItem" v-for="(season, index) in serie.seasons" :key="index">{{season}}</li>
+			<li @click="removeSeason" class="list-group-item seasonItem" v-for="(season, index) in serie.seasons" :key="index">{{season.name}}</li>
 		</ul>
   </div>
  <div class="form-group">
@@ -38,7 +38,7 @@
 		},
 		methods: {
 			appendSeason(){
-				this.serie.seasons.push(this.seasonName)
+				this.serie.seasons.push({name: this.seasonName})
 				this.seasonName=""
 			},
 			addNew() {
@@ -46,7 +46,8 @@
 			},
 			removeSeason() {
 				var value = event.target.innerHTML;
-				var index = this.serie.seasons.indexOf(value);
+				var index = this.serie.seasons.findIndex(x => x.name==value);
+				console.log(index)
 				if (index > -1) {
     		this.serie.seasons.splice(index, 1);
 }

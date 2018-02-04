@@ -20,8 +20,8 @@ data() {
 methods: {
     checkSeason(season) {
         this.episodesOpen = true
+        this.seasonClicked = season
         console.log(season)
-        this.seasonClicked = season.target.innerHTML
     }
 },
 components: {

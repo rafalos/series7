@@ -2,7 +2,7 @@
         <div class="col-lg-6">
           <h2 class="text-center">Seasons</h2>
           <ul list-group>
-              <li class="list-group-item seasonItem" @click="clickSeason" v-for="(season, index) in seasons" :key="index">{{season.name}}</li>
+              <li class="list-group-item seasonItem" @click="clickSeason(season)" v-for="(season, index) in seasons" :key="index">{{season.name}}</li>
           </ul>
       </div>
 </template>

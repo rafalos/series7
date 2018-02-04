@@ -55,9 +55,4 @@ import WatchDetails from "./WatchDetails"
      width: 110px;
      height: 150px;
  }
-
-.seasonItem:hover{
-	background: rgb(191, 210, 240);
-	cursor: pointer;
-}
 </style>

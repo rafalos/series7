@@ -2,7 +2,7 @@
         <div class="col-lg-6">
           <h2 class="text-center">Seasons</h2>
           <ul list-group>
-              <li class="list-group-item seasonItem" @click="clickSeason(season)" v-for="(season, index) in seasons" :key="index">{{season.name}}</li>
+              <li ref="item" class="list-group-item seasonItem" @click="clickSeason(season)" v-for="(season, index) in seasons" :key="index">{{season.name}}</li>
           </ul>
       </div>
 </template>
@@ -13,10 +13,18 @@ export default {
     props: ["seasons"],
     methods: {
     clickSeason(season) {
-        this.$emit("episodeClicked", season)
+        this.$emit("seasonClicked", season)
         console.log("emited")
     }
     },
            
     }
 </script>
+
+<style>
+.seasonItem:hover{
+	background: rgb(191, 210, 240);
+	cursor: pointer;
+}
+</style>
+

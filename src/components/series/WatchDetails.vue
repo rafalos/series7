@@ -1,6 +1,6 @@
 <template>
     <div class="row" style="margin: 20px; border: 1px solid black;">
-        <app-season-list :seasons="seasons" @episodeClicked="checkSeason"></app-season-list>
+        <app-season-list :seasons="seasons" @seasonClicked="checkSeason"></app-season-list>
         <app-episode-list v-if="episodesOpen" :season="seasonClicked"></app-episode-list>
     </div>
 </template>

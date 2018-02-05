@@ -1,13 +1,15 @@
 <template>
-  <div class="row" style="padding: 20px;">
+        <div class="row">
       <input type="text" class="form-control" placeholder="Search" v-model="filterText" style="margin-bottom: 20px;">
-        <router-link class="col-lg-2 serieBox" 
+        <router-link class="col-lg-3 col-md-4 col-sm-6  serieBox text-center" 
         tag="div" v-for="serie in filteredSeries" 
         :to="'/series/' + serie._id" 
         :key="serie._id"><h3 class="text-center">{{serie.name}}</h3>
+        <div class="wrapper">
         <img class="img img-responsive coverImage" :src="serie.coverImg">
+        </div>
         </router-link>
-  </div>
+        </div>
 </template>
 
 <script>
@@ -42,8 +44,9 @@ export default {
 
 <style scoped>
  .coverImage {
-     width: 200px;
-     height: 300px;;
+    max-width: 150px;
+    height: 200px;
+    overflow: hidden;
  }
  .custom {
    cursor: pointer;
@@ -55,5 +58,19 @@ export default {
 
  .serieBox {
      cursor: pointer;
+     padding: 10px;
  }
+
+ .serieBox:hover {
+     border: 1px dashed black
+ }
+
+ .coverImage:hover {
+     opacity: 0.5;
+ }
+
+ input {
+     font-size: 1.4em;
+ }
+
 </style>

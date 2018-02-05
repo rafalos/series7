@@ -2,9 +2,11 @@
 <div class="container-fluid" id="main-wrapper">
   <div class="row d-flex d-md-block flex-nowrap wrapper">
   <app-header></app-header>
-  <main class="col-md-9 float-left col px-5 pl-md-2 pt-2 main" >
+  <main class="col-md-9 float-left col px-5 pl-md-2 pt-2 main">
     <router-view></router-view>
+    <app-footer></app-footer>
     </main>
+  
   </div>     
 </div>
 
@@ -14,6 +16,7 @@
 
 <script>
 import Header from "./components/Header"
+import Footer from "./components/Footer"
 export default {
   data() {
     return{
@@ -21,10 +24,14 @@ export default {
     }
   },
   components: {
-    appHeader: Header
+    appHeader: Header,
+    appFooter: Footer
   }
 }
 </script>
+
+
+
 
 <style>
 #sidebar {
@@ -151,5 +158,4 @@ export default {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-</style>
 </style>

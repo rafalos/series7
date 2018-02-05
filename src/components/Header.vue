@@ -1,28 +1,34 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <router-link to="/" class="navbar-brand">Series7</router-link> 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse ">
-    <ul class="navbar-nav mr-auto" >
-         <router-link to="/series" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Series List</a></router-link>
-         <router-link to="/new" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Add new</a></router-link>
-         <router-link to="/login" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Login</a></router-link>
-         <router-link to="/register" tag="li" class="nav-item" activeClass="active"><a class="nav-link">Register</a></router-link>
-    </ul>
-  </div>
-</nav>
+ <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+                <div class="list-group border-0 card text-center text-md-left">
+                <h1 class="brandText text-center">Series7</h1>
+                <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Series </span> </a>
+                <div class="collapse" id="menu1">
+                    <router-link to="/series" activeClass="active"><a class="list-group-item">Series List</a></router-link>
+                    <router-link to="/new" activeClass="active"><a class="list-group-item">Add new</a></router-link>
+                </div>
+                <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">User account </span></a>
+                <div class="collapse" id="menu3">
+                    <router-link to="/login"><a class="list-group-item">Login</a></router-link>
+                     <router-link to="/register"><a class="list-group-item">Register</a></router-link>
+                </div>
+                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">About</span></a>
+            </div>
+        </div>
 </template>
 
 <script>
 </script>
 
-<style>
-
-.active {
-  border: 1px solid black;
-}
+<style scoped>
+  .brandText {
+    color: white;
+  }
 </style>
+
+
+
+         
+         
+        
 

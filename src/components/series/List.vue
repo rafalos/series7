@@ -1,9 +1,12 @@
 <template>
-  <div>
-      <input type="text" class="form-control" placeholder="Search" v-model="filterText">
-      <ul class="list-group">
-        <router-link class="list-group-item custom" tag="li" v-for="serie in filteredSeries" :to="'/series/' + serie._id" :key="serie._id"><h3>{{serie.name}}</h3> Seasons: {{serie.seasons.length}}<img class="img img-responsive float-right coverImage" :src="serie.coverImg"></router-link>
-      </ul>
+  <div class="row" style="padding: 20px;">
+      <input type="text" class="form-control" placeholder="Search" v-model="filterText" style="margin-bottom: 20px;">
+        <router-link class="col-lg-2 serieBox" 
+        tag="div" v-for="serie in filteredSeries" 
+        :to="'/series/' + serie._id" 
+        :key="serie._id"><h3 class="text-center">{{serie.name}}</h3>
+        <img class="img img-responsive coverImage" :src="serie.coverImg">
+        </router-link>
   </div>
 </template>
 
@@ -39,8 +42,8 @@ export default {
 
 <style scoped>
  .coverImage {
-     width: 100px;
-     height: 150px;;
+     width: 200px;
+     height: 300px;;
  }
  .custom {
    cursor: pointer;
@@ -48,5 +51,9 @@ export default {
 
  .custom:hover {
    background: rgba(223, 226, 248, 0.972);
+ }
+
+ .serieBox {
+     cursor: pointer;
  }
 </style>

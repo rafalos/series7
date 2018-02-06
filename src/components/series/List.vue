@@ -44,7 +44,6 @@ export default {
 
 <style scoped>
  .coverImage {
-    max-width: 150px;
     height: 200px;
     overflow: hidden;
  }

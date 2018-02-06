@@ -1,5 +1,9 @@
 <template>
   <div>
+		<div class="header">
+		<h2>Missing series?</h2>
+		<h4><i>Let's add them to our database!</i></h4>
+		</div>
     <form>
   <div class="form-group">
     <label for="">Name</label>
@@ -7,11 +11,12 @@
     {{serie.name}}
   </div>
   <div class="form-group">
+		<label for="">Seasons</label>
     <input type="text" class="form-control" placeholder="Name of season" @keydown.enter.prevent="appendSeason" v-model="seasonName">
 		<div class="form-group">
 			<button @click.prevent="appendSeason" class="btn btn-success"><i class="fas fa-plus"></i></button>
 		</div>
-		  <label for="">Seasons ({{serie.seasons.length}}):</label>
+		  <label for="">Seasons number: ({{serie.seasons.length}}):</label>
 		<ul class="list-group">
 			<li @click="removeSeason" class="list-group-item seasonItem" v-for="(season, index) in serie.seasons" :key="index">{{season.name}}</li>
 		</ul>
@@ -38,8 +43,13 @@
 		},
 		methods: {
 			appendSeason(){
-				this.serie.seasons.push({name: this.seasonName})
-				this.seasonName=""
+				if(this.seasonName == "") {
+					return alert ("Please enter the season name")
+				}else {
+					this.serie.seasons.push({name: this.seasonName})
+					this.seasonName=""
+				}
+		
 			},
 			addNew() {
 				this.$http.post("series", this.serie);
@@ -60,5 +70,9 @@
 	.seasonItem:hover{
 		background: rgb(240, 177, 177);
 		cursor: pointer;
+	}
+
+	.header {
+		margin-bottom: 30px;
 	}
 </style>

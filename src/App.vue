@@ -3,8 +3,7 @@
   <div class="row d-flex d-md-block flex-nowrap wrapper">
   <app-header></app-header>
   <main class="col-md-9 float-left col px-5 pl-md-2 pt-2 main">
-    <router-view></router-view>
-    <app-footer></app-footer>
+    <router-view style="padding: 30px;"></router-view>
     </main>
   
   </div>     
@@ -16,7 +15,6 @@
 
 <script>
 import Header from "./components/Header"
-import Footer from "./components/Footer"
 export default {
   data() {
     return{
@@ -24,8 +22,7 @@ export default {
     }
   },
   components: {
-    appHeader: Header,
-    appFooter: Footer
+    appHeader: Header
   }
 }
 </script>
@@ -34,6 +31,7 @@ export default {
 
 
 <style>
+
 #sidebar {
     overflow: hidden;
     z-index: 3;
@@ -55,6 +53,7 @@ export default {
     border-right: 0;
     border-color: #2c2c2c;
     white-space: nowrap;
+    font-size: 1.2em;
 }
 
 /* highlight active menu */
@@ -133,6 +132,7 @@ export default {
         padding: .75rem .5rem;
     }
     /* hide caret icons of top level when collapsed */
+    .brandText,
     #sidebar .list-group > .list-group-item[aria-expanded="true"]::after,
     #sidebar .list-group > .list-group-item[aria-expanded="false"]::after {
         display:none;

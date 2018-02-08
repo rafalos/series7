@@ -2,7 +2,7 @@
         <div class="row">
       <input type="text" class="form-control" placeholder="Search" v-model="filterText" style="margin-bottom: 20px;">
         <router-link class="col-lg-3 col-md-4 col-sm-6  serieBox text-center" 
-        tag="div" v-for="serie in filteredSeries" 
+        tag="div" v-for="serie in fetched.series" 
         :to="'/series/' + serie._id" 
         :key="serie._id"><h3 class="text-center">{{serie.name}}</h3>
         <div class="wrapper">
@@ -18,27 +18,30 @@ export default {
     data(){
     return {
         filterText:"",
-        series:[]
+        series:[],
+        fetched: []
     }
 },
-    created() {
-    this.$http.get("series")
-    .then(response => response.json())
-    .then(data => {
-        this.series = data.series
-        console.log(data.series)
-        }
-    )},
     components: {
         appSerieDetails: Details
     },
+    watch: {
+        series() {
+            this.fetched = this.series
+        }
+    },
     computed: {
         filteredSeries() {
-            return this.series.filter((element)=>{
+            return this.fetched.series.filter((element)=>{
+                console.log(element)
                 return element.name.toLowerCase().match(this.filterText.toLowerCase());
-            });
+            })
         }
-    }
+    },
+    beforeCreate() {
+      this.$store.dispatch("fetchSerieList")
+        this.series = this.$store.getters.fetchCurrentList
+    },
 }
 </script>
 

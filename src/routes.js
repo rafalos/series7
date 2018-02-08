@@ -5,6 +5,8 @@ import Details from "./components/series/Details"
 import List from "./components/series/List"
 import Signup from "./components/user/Signup"
 import Signin from "./components/user/Signin"
+import store from "./store/store"
+import UserProfile from "./components/user/UserProfile"
 
 export const routes = [
     {path: "/", component: Home},
@@ -12,7 +14,18 @@ export const routes = [
         { path: "", component: List },
         { path: ":id", component: Details }
     ]},
-    {path: "/new", component: New},
+    {
+        path: "/new", 
+        component: New,
+        beforeEnter: (to, from, next) => {
+            if(store.state.idToken) {
+                next()
+            } else {
+                next("/signin")
+            }
+        }
+    },
     {path: "/signup", component: Signup},
-    {path: "/signin", component: Signin}
+    {path: "/signin", component: Signin},
+    {path: "/profile", component: UserProfile}
 ]

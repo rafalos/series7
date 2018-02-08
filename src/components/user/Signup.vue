@@ -4,6 +4,7 @@
         <div class="form-group">
             <label for="email">Email adress</label>
             <input type="text" class="form-control" v-model="user.email">
+            <h3>{{message}}</h3>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -17,18 +18,16 @@
     export default {
         data() {
             return {
+                message: "",
                 user:{
                     email: "",
-                    password: ""
+                    password: "",
                 }  
             }
         },
         methods: {
             signUp() {
-                this.$http.post("register", this.user)
-                .then(function(res){
-                    console.log(res)
-                }) 
+                this.$store.dispatch('signup',this.user)
             }
         }
     }

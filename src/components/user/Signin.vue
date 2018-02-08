@@ -9,7 +9,8 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" v-model="user.password">
         </div>
-        <button class="btn btn-primary" @click="signUp">Login</button>
+        <h3>{{message}}</h3>
+        <button class="btn btn-primary" @click="signIn">Login</button>
     </div>
 </template>
 
@@ -17,6 +18,7 @@
     export default {
         data() {
             return {
+                message: "",
                 user:{
                     email: "",
                     password: ""
@@ -24,11 +26,8 @@
             }
         },
         methods: {
-            signUp() {
-                this.$http.post("authenticate", this.user)
-                .then(function(res){
-                    console.log(res)
-                }) 
+            signIn() {
+             this.$store.dispatch('signin',this.user )
             }
         }
     }

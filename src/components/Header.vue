@@ -7,23 +7,38 @@
                     <router-link to="/series" activeClass="active"><a class="list-group-item">Series List</a></router-link>
                     <router-link to="/new" activeClass="active"><a class="list-group-item">Add new</a></router-link>
                 </div>
-                <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">User account </span></a>
+                <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-user"></i> <span class="d-none d-md-inline">User account </span></a>
                 <div class="collapse" id="menu3">
-                    <router-link to="/signin"><a class="list-group-item">Login</a></router-link>
-                     <router-link to="/signup"><a class="list-group-item">Register</a></router-link>
+                    <router-link to="/signin" v-if="!auth"><a class="list-group-item">Login</a></router-link>
+                     <router-link to="/signup" v-if="!auth"><a class="list-group-item">Register</a></router-link>
+                     <router-link to="/profile" v-if="auth"><a class="list-group-item">{{auth}}</a></router-link>
+                     <li class="list-group-item logout" @click="onLogout" v-if="auth">Logout</li>
                 </div>
                 <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-info-circle"></i> <span class="d-none d-md-inline">About</span></a>
             </div>
-            <!-- <div class="bar">
-                    <div class="progress"><h2>40%</h2></div>
-            </div> -->
         </div>
 </template>
 
 <script>
+    export default {
+        computed: {
+            auth() {
+                return this.$store.getters.isAuthenticated
+            }
+        },
+        methods: {
+            onLogout() {
+                this.$store.dispatch("logout")
+            }
+        }
+    }
 </script>
 
 <style scoped>
+.logout:hover {
+    text-decoration: underline;
+    cursor: pointer
+}
   .brandText {
     margin: 30px;
     color: white;

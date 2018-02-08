@@ -17,13 +17,14 @@ export default {
         console.log("emited")
     }
     },
-           
+             
     }
 </script>
 
 <style>
 .seasonItem:hover{
-	background: rgb(191, 210, 240);
+	background: #222222;
+    color: white;
 	cursor: pointer;
 }
 </style>

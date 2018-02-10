@@ -2,7 +2,7 @@
 <div class="container">
        <div class="row detailsContainer" style="border: 1px solid black">
            <div class="col-lg-2">
-           <img class="img img-responsive coverImage float-left" :src="coverImg">
+           <img class="img img-responsive coverImage float-left;" :src="coverImg">
            </div>
            <div class="col-lg-10">
                <h3 class="text-center"> {{name}} Details</h3>
@@ -45,14 +45,13 @@ import WatchDetails from "./WatchDetails"
   
 </script>
 
-<style>
+<style scoped>
 
 .detailsContainer {
     padding: 10px;
 }
 
 .coverImage {
-     width: 110px;
-     height: 150px;
+     height: 250px;
  }
 </style>

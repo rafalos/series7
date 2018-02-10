@@ -2,11 +2,11 @@
         <div class="row">
       <input type="text" class="form-control" placeholder="Search" v-model="filterText" style="margin-bottom: 20px;">
         <router-link class="col-lg-3 col-md-4 col-sm-6  serieBox text-center" 
-        tag="div" v-for="serie in fetched.series" 
+        tag="div" v-for="serie in newList" 
         :to="'/series/' + serie._id" 
         :key="serie._id"><h3 class="text-center">{{serie.name}}</h3>
         <div class="wrapper">
-        <img class="img img-responsive coverImage" :src="serie.coverImg">
+        <img class="coverImage" :src="serie.coverImg">
         </div>
         </router-link>
         </div>
@@ -18,37 +18,29 @@ export default {
     data(){
     return {
         filterText:"",
-        series:[],
-        fetched: []
+        series: this.newlist
     }
-},
+    },
     components: {
         appSerieDetails: Details
     },
-    watch: {
-        series() {
-            this.fetched = this.series
-        }
+    beforeCreate() {
+        this.$store.dispatch("fetchSerieList")
     },
     computed: {
-        filteredSeries() {
-            return this.fetched.series.filter((element)=>{
-                console.log(element)
-                return element.name.toLowerCase().match(this.filterText.toLowerCase());
+        newList() {
+            return this.$store.getters.fetchCurrentList.filter((element)=>{
+                return element.name.toLowerCase().match(this.filterText.toLowerCase())
             })
         }
-    },
-    beforeCreate() {
-      this.$store.dispatch("fetchSerieList")
-        this.series = this.$store.getters.fetchCurrentList
-    },
+    }
 }
 </script>
 
 <style scoped>
  .coverImage {
-    height: 200px;
-    overflow: hidden;
+    max-height: 200px;
+    transition: 0.2s;
  }
  .custom {
    cursor: pointer;
@@ -63,12 +55,10 @@ export default {
      padding: 10px;
  }
 
- .serieBox:hover {
-     border: 1px dashed black
- }
+
 
  .coverImage:hover {
-     opacity: 0.5;
+     opacity: 0.7;
  }
 
  input {

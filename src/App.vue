@@ -35,11 +35,13 @@ export default {
 #sidebar {
     overflow: hidden;
     z-index: 3;
+    
 }
 #sidebar .list-group {
     min-width: 400px;
     background-color: #333;
     min-height: 100vh;
+    padding: 0 40px 0 0 
 }
 #sidebar i {
     margin-right: 6px;
@@ -86,6 +88,7 @@ export default {
 #sidebar .list-group .collapse .list-group-item,
 #sidebar .list-group .collapsing .list-group-item  {
   padding-left: 20px;
+  
 }
 
 /* level 2*/
@@ -107,7 +110,7 @@ export default {
         overflow-x: visible;
         transition: all 0.25s ease;
         transform: translateX(-45px);
-        position: fixed;
+        position: fixed;   
     }
     
     #sidebar.show {

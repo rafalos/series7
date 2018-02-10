@@ -7,7 +7,7 @@ export default new Vuex.Store({
         state: {
             idToken: null,
             loggedIn: "None",
-            serieList: null
+            serieList: []
         },
         mutations: {
             authUser(state, authData){
@@ -27,8 +27,7 @@ export default new Vuex.Store({
                 Vue.http.get("series")
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    commit("updateSerieList", data)
+                    commit("updateSerieList", data.series)
                     }
                 )},
             signup ({commit}, authData) {

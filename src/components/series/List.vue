@@ -18,14 +18,11 @@ export default {
     data(){
     return {
         filterText:"",
-        series: this.newlist
+        series: this.newList
     }
     },
     components: {
         appSerieDetails: Details
-    },
-    beforeCreate() {
-        this.$store.dispatch("fetchSerieList")
     },
     computed: {
         newList() {
@@ -33,13 +30,18 @@ export default {
                 return element.name.toLowerCase().match(this.filterText.toLowerCase())
             })
         }
+    },
+    methods: {
+        test() {
+            console.log(this.series)
+        }
     }
 }
 </script>
 
 <style scoped>
  .coverImage {
-    max-height: 200px;
+    max-height: 300px;
     transition: 0.2s;
  }
  .custom {

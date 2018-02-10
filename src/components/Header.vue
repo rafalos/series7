@@ -11,10 +11,11 @@
                 <div class="collapse" id="menu3">
                     <router-link to="/signin" v-if="!auth"><a class="list-group-item">Login</a></router-link>
                      <router-link to="/signup" v-if="!auth"><a class="list-group-item">Register</a></router-link>
-                     <router-link to="/profile" v-if="auth"><a class="list-group-item">{{auth}}</a></router-link>
+                     <router-link to="/profile" v-if="auth"><a class="list-group-item">{{auth.account}}</a></router-link>
                      <li class="list-group-item logout" @click="onLogout" v-if="auth">Logout</li>
                 </div>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-info-circle"></i> <span class="d-none d-md-inline">About</span></a>
+                <router-link to="/about" class="standalone list-group-item d-inline-block"><i class="fas fa-info-circle"></i><span class="d-none d-md-inline"> About</span></router-link>
+                <router-link v-if="auth.isAdmin" to="/admin" class="standalone list-group-item d-inline-block"><i class="fas fa-wrench"></i></i><span class="d-none d-md-inline"> Admin</span></router-link>
             </div>
         </div>
 </template>
@@ -63,6 +64,10 @@
 
  .list-group-item:hover{
      background: #222222 !important;
+ }
+
+ .standalone {
+     background: #333333 !important;
  }
 </style>
 

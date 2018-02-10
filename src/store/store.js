@@ -7,12 +7,14 @@ export default new Vuex.Store({
         state: {
             idToken: null,
             loggedIn: "None",
+            isAdmin: false,
             serieList: []
         },
         mutations: {
             authUser(state, authData){
                 state.idToken = authData.token;
-                state.loggedIn = authData.email
+                state.loggedIn = authData.email;
+                state.isAdmin = authData.isAdmin;
             },
             clearAuthData(state) {
                 state.idToken = null;
@@ -42,7 +44,8 @@ export default new Vuex.Store({
                     console.log(res)
                     commit ("authUser", {
                         token: res.data.token,
-                        email: res.data.user.email
+                        email: res.data.user.email,
+                        isAdmin: res.data.user.admin
                     })
                     router.replace("/series")
                 }) 
@@ -60,8 +63,13 @@ export default new Vuex.Store({
                if(state.idToken == null) {
                    return false
                }else {
-                   return state.loggedIn
+                   return {
+                       account: state.loggedIn,
+                       isAdmin: state.isAdmin
+                       
+                   }
                }
-            }
+            },
+
         }
 })

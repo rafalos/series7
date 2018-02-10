@@ -15,6 +15,9 @@ export const router = new VueRouter({
 })
 
 new Vue({
+  beforeCreate() {
+    this.$store.dispatch("fetchSerieList")
+  },
   el: '#app',
   router,
   store,

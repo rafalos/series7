@@ -8,7 +8,9 @@ export default new Vuex.Store({
             idToken: null,
             loggedIn: "None",
             isAdmin: false,
-            serieList: []
+            serieList: [],
+            selectedSerie:[]
+
         },
         mutations: {
             authUser(state, authData){
@@ -22,6 +24,9 @@ export default new Vuex.Store({
             },
             updateSerieList(state, serieList ) {
                 state.serieList = serieList
+            },
+            setSelectedSerie(state, serie) {
+                state.selectedSerie = serie.data.serie
             }
         },
         actions: {
@@ -53,7 +58,17 @@ export default new Vuex.Store({
             logout({commit}) {
                 commit ("clearAuthData")
                 router.replace("/series")
-            } 
+            },
+            fetchSelectedSerie({commit}, id){
+                Vue.http.get("series/"+id)
+                .then(response => response.json())
+                .then(data => {
+                    commit("setSelectedSerie", {
+                        data: data
+                    })
+        }
+    )
+            }
         }, 
         getters: {
             fetchCurrentList(state) {
@@ -70,6 +85,9 @@ export default new Vuex.Store({
                    }
                }
             },
+            getSelectedSerie(state) {
+                return state.selectedSerie
+            }
 
         }
 })

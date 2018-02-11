@@ -2,17 +2,17 @@
 <div class="container">
        <div class="row" style="border: 1px solid black">
            <div class="col-lg-2">
-           <img class="img-thumbnail coverImage" :src="coverImg">
+           <img class="img-thumbnail coverImage" :src="selected.coverImg">
            </div>
            <div class="col-lg-10">
-               <h3 class="text-center"> {{name}} Details</h3>
+               <h3 class="text-center"> {{selected.name}} Details</h3>
                <ul>
                    <li>Created by:  </li>
-                   <li>Number of seasons: {{seasons.length}} </li>
+                   <li>Number of seasons: {{selected.seasons.length}} </li>
                </ul>
            </div>
         </div>
-      <app-watch-details :seasons="seasons"></app-watch-details>
+      <app-watch-details :seasons="selected.seasons"></app-watch-details>
 </div>
 </template>
 
@@ -20,24 +20,14 @@
 <script>
 import WatchDetails from "./WatchDetails"
  export default {
-     data() {
-         return {
-             addEpisodeOpen: false,
-             name: "",
-             coverImg:"",
-             seasons:[],
-             clickedSeason: ""
+     computed: {
+         selected() {
+             return this.$store.getters.getSelectedSerie
          }
      },
-     created() {
-    this.$http.get("series/"+ this.$route.params.id)
-    .then(response => response.json())
-    .then(data => {
-        this.name = data.serie.name
-        this.coverImg = data.serie.coverImg
-        this.seasons = data.serie.seasons
-        }
-    )},
+     beforeCreate() {
+         this.$store.dispatch("fetchSelectedSerie", this.$route.params.id)
+     },
     components: {
         appWatchDetails: WatchDetails
     }

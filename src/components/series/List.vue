@@ -29,7 +29,7 @@ export default {
             return this.$store.getters.fetchCurrentList.filter((element)=>{
                 return element.name.toLowerCase().match(this.filterText.toLowerCase())
             })
-        }
+        },
     },
     methods: {
         test() {

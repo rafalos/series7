@@ -6,6 +6,7 @@
                 <div class="collapse" id="menu1">
                     <router-link to="/series" activeClass="active"><a class="list-group-item">Series List</a></router-link>
                     <router-link to="/new" activeClass="active"><a class="list-group-item">Add new</a></router-link>
+                    <router-link to="/genres" activeClass="active"><a class="list-group-item">Genres</a></router-link>
                 </div>
                 <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-user"></i> <span class="d-none d-md-inline">User account </span></a>
                 <div class="collapse" id="menu3">

@@ -9,9 +9,11 @@ import store from "./store/store"
 import UserProfile from "./components/user/UserProfile"
 import AdminDashboard from "./components/admin/Dashboard"
 import About from "./components/About"
+import Genres from "./components/series/Genres"
 
 export const routes = [
     {path: "/", component: Home},
+    {path: "/genres", component: Genres},
     {path: "/series", component: Series, children: [
         { path: "", component: List },
         { path: ":id", component: Details }

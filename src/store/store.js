@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
         state: {
+            genres: ["Comedy", "Sci-Fi", "Horror", "Romance", "Action", "Thriller", "Drama", "Mystery", "Crime", "Animation", "Adventure", "Fantasy", "Comedy-romance", "Action-comedy", "Superhero"],
             idToken: null,
             loggedIn: "None",
             isAdmin: false,
@@ -87,6 +88,9 @@ export default new Vuex.Store({
             },
             getSelectedSerie(state) {
                 return state.selectedSerie
+            },
+            getGenreList(state) {
+                return state.genres
             }
 
         }

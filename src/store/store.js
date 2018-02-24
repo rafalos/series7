@@ -32,7 +32,7 @@ export default new Vuex.Store({
         },
         actions: {
             fetchSerieList({commit}) {
-                Vue.http.get("series")
+                return Vue.http.get("series")
                 .then(response => response.json())
                 .then(data => {
                     commit("updateSerieList", data.series)

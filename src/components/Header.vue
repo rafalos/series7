@@ -16,7 +16,7 @@
                      <li class="list-group-item logout" @click="onLogout" v-if="auth">Logout</li>
                 </div>
                 <router-link to="/about" class="standalone list-group-item d-inline-block"><i class="fas fa-info-circle"></i><span class="d-none d-md-inline"> About</span></router-link>
-                <router-link v-if="auth.isAdmin" to="/admin" class="standalone list-group-item d-inline-block"><i class="fas fa-wrench"></i></i><span class="d-none d-md-inline"> Admin</span></router-link>
+                <router-link v-if="auth.isAdmin" to="/admin" class="standalone list-group-item d-inline-block"><i class="fas fa-wrench"></i><span class="d-none d-md-inline"> Admin</span></router-link>
             </div>
         </div>
 </template>

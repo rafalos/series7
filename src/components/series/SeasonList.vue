@@ -14,7 +14,6 @@ export default {
     methods: {
     clickSeason(season) {
         this.$emit("seasonClicked", season)
-        console.log("emited")
     }
     },
              

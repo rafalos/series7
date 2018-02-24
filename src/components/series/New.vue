@@ -35,11 +35,17 @@
 		</div>
 		  <label for="">Seasons number: ({{serie.seasons.length}}):</label>
 		<div class="row">
-			<div class="col-lg-6 seasonBox" @click="removeSeason(season)" v-for="(season, index) in serie.seasons" :key="index">
+			<div class="col-lg-6 seasonBox" @click.stop="removeSeason(season)" v-for="(season, index) in serie.seasons" :key="index">
 			<h5 class="text-center">Season: {{season.name}}</h5>	
 				<ul class="list-group" id="episodeList">
-					<li class="list-group-item" v-for="episode in season.episodes" :key="episode.name">{{episode.name}} and {{episode.duration}}</li>
-					<button class="btn btn-success" @click.prevent.stop="appendEpisode">+</button>
+					<li class="list-group-item episode" v-for="episode in season.episodes" :key="episode.id" @click.stop="removeEpisode(episode)">{{episode.name}} and {{episode.duration}}</li>
+					<li v-if="addNewEpisodeOpened" class="list-group-item" @click.stop>
+						<input class="form-control" type="text" v-model="episodeName">
+						<input v-model="episodeDuration" class="form-control" type="text">
+						<button class="btn btn-danger" @click.stop.prevent="appendEpisode(season)">Add</button>
+						<button class="btn btn-danger" @click.stop.prevent="addNewEpisodeOpened = false">X</button>
+					</li>
+					<button class="btn btn-success" @click.prevent.stop="newEpisodeOpen">Add episode</button>
 				</ul>
 				</div>
 		</div>
@@ -57,6 +63,9 @@
 	export default {
 		data() {
 			return {
+				addNewEpisodeOpened: false,
+				episodeName:"",
+				episodeDuration:0,
 				seasonName: "",
 				serie: {
 					name: "",
@@ -80,26 +89,45 @@
 						name: this.seasonName,
 						episodes: [{
 							name: "test",
-							duration: 20
+							duration: 20,
+							id: this.generateId()
 						}]
 						})
+						console.log(this.serie.seasons)
 					this.seasonName=""
 				}
 			},
-			appendEpisode() {
-				this.serie.seasons.episodes.push({
-					name: "test"
+			newEpisodeOpen() {
+				this.addNewEpisodeOpened = !this.addNewEpisodeOpened;
+			},
+			appendEpisode(season) {
+				season.episodes.push({
+					name: this.episodeName,
+					duration: this.episodeDuration
 				})
+				this.addNewEpisodeOpened = false
+			},
+			removeEpisode(episode) {
+				console.log(episode)
 			},
 			addNew() {
-				this.$http.post("series", this.serie);
+				this.$http.post("series", this.serie).then(()=> {
+					this.$store.dispatch("fetchSerieList").then(()=>{
+					this.$router.push("/series")
+				})
+				});
+				
 			},
 			removeSeason(season) {
 				var value = season.name;
 				var index = this.serie.seasons.findIndex(x => x.name==value);
 				if (index > -1) {
-    		this.serie.seasons.splice(index, 1);
-}
+			this.serie.seasons.splice(index, 1);
+			this.addNewEpisodeOpened = false
+			}
+			},
+			generateId() {
+				return Math.floor(Math.random()*10000)+412
 			}
 		}
 	}
@@ -108,7 +136,7 @@
 <style scoped>
 	.seasonBox {
 		padding: 10px;
-		border: 1px solid black;
+		border: 1px solid lightgrey;
 	}
 	.seasonBox:hover{
 		background: rgb(240, 177, 177);
@@ -117,5 +145,9 @@
 
 	.header {
 		margin-bottom: 30px;
+	}
+
+	.episode:hover {
+		background: rgba(102, 216, 168, 0.534);
 	}
 </style>
